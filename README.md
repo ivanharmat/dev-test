@@ -18,7 +18,7 @@ Please read the following instructions carefully and complete this test to the b
 3. Using stand-alone PHP (No-Framework), connect to the provided starship API and display them dynamically on the page as shown in Screenshot 1.
 4. Paginate the dynamic results that were added to the page via PHP, using either PHP or Javascript.
 5. Using Jquery and Bootstraps modal code recreate Screenshot 2 by connecting to the API again to pull the specific details about the starship the user is clicking on.
-6. Email us a zip of your code
+6. Email us a zip of your code or post it to your GitHub profile and send us the link
 
 
 Thanks, and good luck!
