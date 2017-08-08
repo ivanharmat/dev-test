@@ -7,6 +7,29 @@
 	 <?php if($pagesAvailable > 0):?>
         <?php require('views/pagination.php');?>
 
+        <div class="row">
+            <div class="col-md-12">
+                <?php foreach($ships as $key => $ship):?>
+                    <div class="media">
+                        <div class="media-body">
+                            <h2 class="media-heading"><?php echo ucwords($ship['name']);?></h2>
+                            <p><strong>Length :</strong> <?php echo number_format((int)$ship['length'], 0);?></p>
+                            <p><strong>Crew :</strong> <?php echo number_format((int)$ship['crew'], 0);?></p>
+                            <p><strong>Passengers :</strong> <?php echo number_format((int)$ship['passengers'], 0);?></p>
+                            <a href="#" class="btn btn-lg btn-default more_info" rel="<?php echo $key;?>">More Info &raquo;</a>
+                        </div>
+                        <div class="media-right">
+                            <a href="#">
+                                <img alt="ship image" class="media-object lazy_load_image" data-src="/img/starships/<?php echo strtolower(str_replace(' ', '-', $ship['name']));?>.png" src="/img/placeholder_image_white.jpg">
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                <?php endforeach;?>
+            </div>
+        </div>
+        <input type="hidden" name="shipsJson" value='<?php echo $shipsJson;?>' id="shipsJson">
+
 		<div class="modal fade" id="default_modal" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">

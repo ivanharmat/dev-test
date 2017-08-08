@@ -16,5 +16,5 @@
 <script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.visible.min.js"></script>
-<script src="/js/custom.js"></script>
+<script src="/js/custom.js?v1.1"></script>
 </html>

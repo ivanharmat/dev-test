@@ -45,4 +45,24 @@ class Main {
     	return $page_num;
     }
 
+    public static function getJsonShipsData($ships) {
+    	$shipsJson = [];
+    	foreach($ships as $ship) {
+    		$shipsJson[] = [
+    			'name' => (isset($ship['name'])) ? ucwords($ship['name']) : 'n/a',
+    			'manufacturer' => (isset($ship['manufacturer'])) ? ucwords($ship['manufacturer']) : 'n/a',
+    			'starship_class' => (isset($ship['starship_class'])) ? ucwords($ship['starship_class']) : 'n/a',
+    			'hyperdrive_rating' => (isset($ship['hyperdrive_rating'])) ? $ship['hyperdrive_rating'] : 'n/a',
+
+    			'cargo_capacity' => (isset($ship['cargo_capacity'])) ? $ship['cargo_capacity'] : 'n/a',
+    			'cost_in_credits' => (isset($ship['cost_in_credits'])) ? $ship['cost_in_credits'] : 'n/a',
+
+    			'max_atmosphering_speed' => (isset($ship['max_atmosphering_speed'])) ? $ship['max_atmosphering_speed'] : 'n/a',
+    			'MGLT' => (isset($ship['MGLT'])) ? $ship['MGLT'] : 'n/a',
+
+    		];
+    	}
+    	return json_encode($shipsJson, true);
+    }
+
 }

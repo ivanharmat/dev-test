@@ -10,6 +10,7 @@ if($page <= 0) $page = 1;
 $shipsData = $helper::getShipsData($page);
 $ships = (isset($shipsData['results'])) ? $shipsData['results'] : [];
 
+$shipsJson = $helper::getJsonShipsData($ships);
 $shipsCount = (isset($shipsData['count'])) ? $shipsData['count'] : 0;
 $pagesAvailable = ceil($shipsCount / ITEMS_PER_PAGE);
 
