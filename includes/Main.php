@@ -13,6 +13,13 @@ class Main {
 
 	public static $itemsPerPage = ITEMS_PER_PAGE;
 
+
+	/**
+	* private method getShipsData
+	* url call to get the ships data
+	* @param int page
+	* @return array
+	*/
 	public static function getShipsData($page = 1) {
 		$url = 'http://swapi.co/api/starships/?page='.$page.'&format=json';
 		$response_code = self::get_http_response_code($url);
@@ -26,6 +33,12 @@ class Main {
 		return $array_data;
 	}
 
+	/**
+	* private method get_http_response_code
+	* checks if url exists and returns HTTP code
+	* @param string url
+	* @return int
+	*/
 	private static function get_http_response_code($url) {
     	$headers = get_headers($url);
     	return substr($headers[0], 9, 3);
@@ -45,10 +58,16 @@ class Main {
     	return $page_num;
     }
 
+    /**
+	* method getJsonShipsData
+	* formats ships data and returns json object
+	* @param array ships
+	* @return json object
+	*/
     public static function getJsonShipsData($ships) {
     	$shipsJson = [];
-    	foreach($ships as $ship) {
-    		$shipsJson[] = [
+    	foreach($ships as $key => $ship) {
+    		$shipsJson[$key] = [
     			'name' => (isset($ship['name'])) ? ucwords($ship['name']) : 'n/a',
     			'manufacturer' => (isset($ship['manufacturer'])) ? ucwords($ship['manufacturer']) : 'n/a',
     			'starship_class' => (isset($ship['starship_class'])) ? ucwords($ship['starship_class']) : 'n/a',
@@ -59,8 +78,18 @@ class Main {
 
     			'max_atmosphering_speed' => (isset($ship['max_atmosphering_speed'])) ? $ship['max_atmosphering_speed'] : 'n/a',
     			'MGLT' => (isset($ship['MGLT'])) ? $ship['MGLT'] : 'n/a',
-
     		];
+    		// better formatting
+    		if(is_numeric($shipsJson[$key]['cargo_capacity'])) {
+    			$shipsJson[$key]['cargo_capacity'] = number_format($shipsJson[$key]['cargo_capacity'], 0);
+    		}
+    		if(is_numeric($shipsJson[$key]['cost_in_credits'])) {
+    			$shipsJson[$key]['cost_in_credits'] = number_format($shipsJson[$key]['cost_in_credits'], 0);
+    		}
+    		if(is_numeric($shipsJson[$key]['max_atmosphering_speed'])) {
+    			$shipsJson[$key]['max_atmosphering_speed'] = number_format($shipsJson[$key]['max_atmosphering_speed'], 0);
+    		}
+
     	}
     	return json_encode($shipsJson, true);
     }

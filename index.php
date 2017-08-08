@@ -2,11 +2,14 @@
 require_once('includes/constants.php');
 require_once('includes/Main.php');
 
+// main helper object
 $helper = new Main();
 
+// get page number, default = 1
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if($page <= 0) $page = 1;
 
+// get json data 
 $shipsData = $helper::getShipsData($page);
 $ships = (isset($shipsData['results'])) ? $shipsData['results'] : [];
 

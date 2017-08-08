@@ -2,10 +2,12 @@ var shipsJson = '';
 
 (function($) {
 
+	// load json data to variable only if it exists
 	if($('#shipsJson').length > 0) {
 		shipsJson = JSON.parse($('#shipsJson').val());
 	}
 
+	// call more info modal
 	$('.more_info').click(function(e){
 		e.preventDefault();
 		var keyValue = $(this).attr('rel');
@@ -23,6 +25,7 @@ var shipsJson = '';
 		$('#default_modal').modal();
 	});
 
+	// lazy loading images
 	$('.lazy_load_image').each(function(){
 		lazy_load_image($(this));
 	});
@@ -33,10 +36,12 @@ var shipsJson = '';
 		});
 	});
 
+	// show loading graphics on pagination click
 	$('.pagination a').click(function(){
 		$('.loading-container').show();
 	});
 	
+	// hide loading when everything is ready
 	$('.loading-container').fadeOut(1000, function () {
         $(this).hide();
     });	
