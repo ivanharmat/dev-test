@@ -4,7 +4,8 @@
 </div>
 
 <div class="container" id="main_container">
-
+	 <?php if($pagesAvailable > 0):?>
+        <?php require('views/pagination.php');?>
 
 		<div class="modal fade" id="default_modal" data-keyboard="false">
             <div class="modal-dialog">
@@ -28,4 +29,12 @@
                 </div>
             </div>
         </div>
+        <?php require('views/pagination.php');?>
+    <?php else :?>
+    	<div class="row">
+            <div class="col-md-12">
+                <p class="alert alert-info">No data found. <a href="/" class="btn btn-success btn-small">Try again</a></p>
+            </div>
+        </div>
+    <?php endif;?>
 </div>
