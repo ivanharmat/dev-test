@@ -1,11 +1,32 @@
-
+var shipsJson = '';
 
 (function($) {
+
+	if($('#shipsJson').length > 0) {
+		shipsJson = JSON.parse($('#shipsJson').val());
+	}
+
+	$('.more_info').click(function(e){
+		e.preventDefault();
+		var keyValue = $(this).attr('rel');
+		var selectedShip = shipsJson[keyValue];
+
+		$('#default_modal_title').text(selectedShip.name);
+		$('#manufacturer_span').text(selectedShip.manufacturer);
+		$('#starship_class_span').text(selectedShip.starship_class);
+		$('#hyperdrive_rating_span').text(selectedShip.hyperdrive_rating);
+		$('#cargo_capacity_span').text(selectedShip.cargo_capacity);
+		$('#cost_in_credits_span').text(selectedShip.cost_in_credits);
+		$('#max_atmosphering_speed_span').text(selectedShip.max_atmosphering_speed);
+		$('#mglt_span').text(selectedShip.MGLT);
+
+		$('#default_modal').modal();
+	});
 
 	$('.lazy_load_image').each(function(){
 		lazy_load_image($(this));
 	});
-	
+
 	$(window).scroll(function () {
 		$('.lazy_load_image').each(function(){
 			lazy_load_image($(this));
